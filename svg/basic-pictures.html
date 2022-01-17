@@ -1,0 +1,196 @@
+<html>
+
+<head>
+    <title>Manual SVG Creations</title>
+    <style>
+        .gingerbread .body {
+            fill: #cd803d;
+        }
+
+        .gingerbread .eye {
+            fill: white;
+        }
+
+        .gingerbread .mouth {
+            fill: none;
+            stroke: white;
+            stroke-width: 2px;
+        }
+
+        .gingerbread .limb {
+            stroke: #cd803d;
+            stroke-width: 35px;
+            stroke-linecap: round;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>freeCodeCamp Provided Examples</h1>
+
+    Thanks to: https://www.freecodecamp.org/news/svg-tutorial-learn-to-code-images/
+
+    <h2>Original size</h2>
+    <svg width="50" height="50" viewBox="0 0 100 100">
+        <circle cx="50" cy="50" r="25" fill="red" />
+    </svg>
+
+    <h2>Increased Width/Height</h2>
+    <svg width="500" height="500" viewBox="0 0 100 100">
+        <circle cx="50" cy="50" r="25" fill="red" />
+    </svg>
+
+    <h2>Changed viewBox size</h2>
+    <svg width="100" height="100" viewBox="0 0 50 50">
+        <circle cx="50" cy="50" r="25" fill="red" />
+    </svg>
+
+    <h2>Christmas Ornament</h2>
+    <svg width="200" height="200" viewBox="-100 -100 200 200">
+        <circle cx="0" cy="20" r="70" fill="#D1495B" />
+
+        <circle cx="0" cy="-75" r="12" fill="none" stroke="#F79257" stroke-width="5" />
+
+        <rect x="-17.5" y="-65" width="35" height="20" fill="#F79257" />
+    </svg>
+
+    <h2>Christmas Tree</h2>
+    <svg width="200" height="200" viewBox="-100 -100 250 250">
+        <polygon points="0,0 80,120 -80,120" fill="#234236" />
+        <polygon points="0,-40 60,60 -60,60" fill="#0C5C4C" />
+        <polygon points="0,-80 40,0 -40,0" fill="#38755B" />
+        <rect x="-20" y="120" width="40" height="30" fill="brown" />
+    </svg>
+
+    <h2>Gingerbread Man</h2>
+    <svg class="gingerbread" width="200" height="200" viewBox="-100 -100 200 200">
+        <circle class="body" cx="0" cy="-50" r="30" />
+
+        <circle class="eye" cx="-12" cy="-55" r="3" />
+        <circle class="eye" cx="12" cy="-55" r="3" />
+        <rect class="mouth" x="-10" y="-40" width="20" height="5" rx="2" />
+
+        <line class="limb" x1="-40" y1="-10" x2="40" y2="-10" />
+        <line class="limb" x1="-25" y1="50" x2="0" y2="-15" />
+        <line class="limb" x1="25" y1="50" x2="0" y2="-15" />
+
+        <circle class="button" cx="0" cy="-10" r="5" />
+        <circle class="button" cx="0" cy="10" r="5" />
+    </svg>
+
+    <h2>Star</h2>
+    <svg width="200" height="200" viewBox="-100 -100 200 200">
+        <g transform="translate(0 5)">
+            <g>
+                <polygon points="0,0 36,-50 0,-100" fill="#EDD8B7" />
+                <polygon points="0,0 -36,-50 0,-100" fill="#E5C39C" />
+            </g>
+            <g transform="rotate(72)">
+                <polygon points="0,0 36,-50 0,-100" fill="#EDD8B7" />
+                <polygon points="0,0 -36,-50 0,-100" fill="#E5C39C" />
+            </g>
+            <g transform="rotate(-72)">
+                <polygon points="0,0 36,-50 0,-100" fill="#EDD8B7" />
+                <polygon points="0,0 -36,-50 0,-100" fill="#E5C39C" />
+            </g>
+            <g transform="rotate(144)">
+                <polygon points="0,0 36,-50 0,-100" fill="#EDD8B7" />
+                <polygon points="0,0 -36,-50 0,-100" fill="#E5C39C" />
+            </g>
+            <g transform="rotate(-144)">
+                <polygon points="0,0 36,-50 0,-100" fill="#EDD8B7" />
+                <polygon points="0,0 -36,-50 0,-100" fill="#E5C39C" />
+            </g>
+        </g>
+    </svg>
+
+    <h2>Branch</h2>
+    <svg width="200" height="200" viewBox="-100 -100 200 200">
+        <defs>
+            <path id="branch" d="
+              M 0 0 L 0 -90
+              M 0 -20 L 20 -34
+              M 0 -20 L -20 -34
+              M 0 -40 L 20 -54
+              M 0 -40 L -20 -54
+              M 0 -60 L 20 -74
+              M 0 -60 L -20 -74" stroke="#E5C39C" stroke-width="5" />
+        </defs>
+
+        <use href="#branch" />
+        <use href="#branch" transform="rotate(60)" />
+        <use href="#branch" transform="rotate(120)" />
+        <use href="#branch" transform="rotate(180)" />
+        <use href="#branch" transform="rotate(240)" />
+        <use href="#branch" transform="rotate(300)" />
+    </svg>
+
+    <h2>Bendy Christmas Tree</h2>
+    <svg width="200" height="300" viewBox="-100 -150 150 400">
+        <path d="
+            M 0 -80
+            Q 5 -75 0 -70
+            Q -10 -65 0 -60
+            Q 15 -55 0 -50
+            Q -20 -45 0 -40
+            Q 25 -35 0 -30
+            Q -30 -25 0 -20
+            Q 35 -15 0 -10
+            Q -40 -5 0 0
+            Q 45 5 0 10
+            Q -50 15 0 20
+            Q 55 25 0 30
+            Q -60 35 0 40
+            Q 65 45 0 50
+            Q -70 55 0 60
+            Q 75 65 0 70
+            Q -80 75 0 80
+            Q 85 85 0 90
+            Q -90 95 0 100
+            Q 95 105 0 110
+            Q -100 115 0 120
+            L 0 140
+            L 20 140
+            L -20 140" fill="none" stroke="#0C5C4C" stroke-width="5" />
+    </svg>
+
+    <h2>Bell</h2>
+    <svg width="200" height="150" viewBox="-100 -100 200 200">
+        <g stroke="black" stroke-width="2">
+            <circle cx="0" cy="-45" r="7" fill="#4F6D7A" />
+            <circle cx="0" cy="50" r="10" fill="#F79257" />
+            <path d="
+              M -50 40
+              L -50 50
+              L 50 50
+              L 50 40
+              Q 40 40 40 10
+              C 40 -60 -40 -60 -40 10   
+              Q -40 40 -50 40" fill="#FDEA96" />
+        </g>
+    </svg>
+
+    <h1>Personal tests</h1>
+
+    <h2>My high school-era Symbol</h2>
+    <svg width="900" height="150" viewBox="0 -100 300 200">
+        <path 
+        id="symbol"
+        d="
+          M -65 0
+          L -30 -80
+          L 30 80
+          L -30 80
+          L 30 -80
+          L 65 0
+        " fill="none" stroke-width="6" />
+
+        <use href="#symbol" stroke="black"/>
+        <use href="#symbol" transform="translate(160 0)" stroke="red" />
+        <use href="#symbol" transform="translate(320 0)" stroke="green" />
+        <use href="#symbol" transform="translate(480 0)" stroke="blue" />
+        <use href="#symbol" transform="translate(640 0)" stroke="orange" />
+    </svg>
+</body>
+
+</html>
