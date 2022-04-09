@@ -17,8 +17,9 @@ import {
 import { IGlobalState } from "../store/reducers";
 
 import {
-    // increaseSnake,
-    // INCREMENT_SCORE,
+    increaseSnake,
+    INCREASE_SNAKE,
+    INCREMENT_SCORE,
     makeMove,
     MOVE_DOWN,
     MOVE_LEFT,
@@ -26,7 +27,7 @@ import {
     MOVE_UP,
     // resetGame,
     // RESET_SCORE,
-    // scoreUpdates,
+    scoreUpdates,
     // stopGame,
 } from "../store/actions";
 
@@ -40,6 +41,7 @@ const CanvasBoard = ({ height, width }: ICanvasBoard) => {
     const canvasRef = useRef<HTMLCanvasElement | null>(null);
     const [context, setContext] = useState<CanvasRenderingContext2D | null>(null);
     const snake1 = useSelector((state: IGlobalState) => state.snake);
+    const [isConsumed, setIsConsumed] = useState<boolean>(false);
     const [pos, setPos] = useState<IObjectBody>(
         generateRandomPosition(width - 20, height - 20)
     );
@@ -105,6 +107,11 @@ const CanvasBoard = ({ height, width }: ICanvasBoard) => {
         setContext(canvasRef.current && canvasRef.current.getContext("2d"));
         drawObject(context, snake1, "#91C483");
         drawObject(context, [pos], "#676FA3");
+
+        //When the object is consumed
+        if (snake1[0].x === pos?.x && snake1[0].y === pos?.y) {
+            setIsConsumed(true);
+        }
     }, [context, pos, snake1]);
 
     useEffect(() => {
@@ -114,6 +121,21 @@ const CanvasBoard = ({ height, width }: ICanvasBoard) => {
             window.removeEventListener("keypress", handleKeyEvents);
         };
     }, [disallowedDirection, handleKeyEvents]);
+
+    useEffect(() => {
+        //Generate new object
+        if (isConsumed) {
+          const posi = generateRandomPosition(width - 20, height - 20);
+          setPos(posi);
+          setIsConsumed(false);
+    
+          //Increase snake size when object is consumed successfully
+          dispatch(increaseSnake());
+
+          //Increment the score
+          dispatch(scoreUpdates(INCREMENT_SCORE));
+        }
+      }, [isConsumed, pos, height, width, dispatch]);
 
     return (
         <canvas

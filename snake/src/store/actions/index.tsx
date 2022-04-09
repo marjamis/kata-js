@@ -13,6 +13,9 @@ export const SET_DIS_DIRECTION = "SET_DIS_DIRECTION";
 export const STOP_GAME = "STOP_GAME";
 export const RESET = "RESET";
 
+export const INCREMENT_SCORE = "INCREMENT_SCORE";
+export const INCREASE_SNAKE = "INCREASE_SNAKE";
+
 export interface ISnakeCoord {
     x: number;
     y: number;
@@ -27,4 +30,12 @@ export const setDisDirection = (direction: string) => ({
 export const makeMove = (dx: number, dy: number, move: string) => ({
     type: move,
     payload: [dx, dy]
+});
+
+export const increaseSnake = () => ({
+    type: INCREASE_SNAKE
+});
+
+export const scoreUpdates = (type: string) => ({
+    type
 });
