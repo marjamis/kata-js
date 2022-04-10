@@ -13,6 +13,7 @@ import {
     drawObject,
     generateRandomPosition,
     IObjectBody,
+    hasSnakeCollided,
 } from "../utilities";
 import { IGlobalState } from "../store/reducers";
 
@@ -28,7 +29,7 @@ import {
     // resetGame,
     // RESET_SCORE,
     scoreUpdates,
-    // stopGame,
+    stopGame,
 } from "../store/actions";
 
 export interface ICanvasBoard {
@@ -45,6 +46,8 @@ const CanvasBoard = ({ height, width }: ICanvasBoard) => {
     const [pos, setPos] = useState<IObjectBody>(
         generateRandomPosition(width - 20, height - 20)
     );
+    const [gameEnded, setGameEnded] = useState<boolean>(false);
+
     const disallowedDirection = useSelector(
         (state: IGlobalState) => state.disallowedDirection
     );
@@ -112,6 +115,19 @@ const CanvasBoard = ({ height, width }: ICanvasBoard) => {
         if (snake1[0].x === pos?.x && snake1[0].y === pos?.y) {
             setIsConsumed(true);
         }
+
+        if (
+            hasSnakeCollided(snake1, snake1[0]) ||
+            snake1[0].x >= width ||
+            snake1[0].x <= 0 ||
+            snake1[0].y <= 0 ||
+            snake1[0].y >= height
+          ) {
+            setGameEnded(true);
+            dispatch(stopGame());
+            window.removeEventListener("keypress", handleKeyEvents);
+          } else setGameEnded(false);
+
     }, [context, pos, snake1]);
 
     useEffect(() => {

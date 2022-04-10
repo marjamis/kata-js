@@ -39,3 +39,8 @@ export const increaseSnake = () => ({
 export const scoreUpdates = (type: string) => ({
     type
 });
+
+//action creator
+export const stopGame = () => ({
+    type: STOP_GAME
+});
