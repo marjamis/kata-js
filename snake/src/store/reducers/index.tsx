@@ -7,6 +7,7 @@ import {
     ISnakeCoord,
     INCREASE_SNAKE,
     INCREMENT_SCORE,
+    RESET_SCORE,
 } from '../actions'
 
 export interface IGlobalState {
@@ -54,11 +55,11 @@ const gameReducer = (state = globalState, action: any) => {
             return {
                 ...state,
                 snake: [
-                ...state.snake,
-                {
-                    x: state.snake[snakeLen - 1].x - 20,
-                    y: state.snake[snakeLen - 1].y - 20,
-                },
+                    ...state.snake,
+                    {
+                        x: state.snake[snakeLen - 1].x - 20,
+                        y: state.snake[snakeLen - 1].y - 20,
+                    },
                 ],
             };
         case INCREMENT_SCORE:
@@ -66,6 +67,8 @@ const gameReducer = (state = globalState, action: any) => {
                 ...state,
                 score: state.score + 1
             }
+        case RESET_SCORE:
+            return { ...state, score: 0 };
         default:
             return state;
     }

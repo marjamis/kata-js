@@ -12,6 +12,8 @@ export const SET_DIS_DIRECTION = "SET_DIS_DIRECTION";
 
 export const STOP_GAME = "STOP_GAME";
 export const RESET = "RESET";
+export const RESET_SCORE = "RESET_SCORE"; //action
+
 
 export const INCREMENT_SCORE = "INCREMENT_SCORE";
 export const INCREASE_SNAKE = "INCREASE_SNAKE";
@@ -43,4 +45,10 @@ export const scoreUpdates = (type: string) => ({
 //action creator
 export const stopGame = () => ({
     type: STOP_GAME
+});
+
+
+//Action creator:
+export const resetGame = () => ({
+  type: RESET
 });

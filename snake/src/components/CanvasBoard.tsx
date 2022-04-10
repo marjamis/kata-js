@@ -26,16 +26,20 @@ import {
     MOVE_LEFT,
     MOVE_RIGHT,
     MOVE_UP,
-    // resetGame,
-    // RESET_SCORE,
+    resetGame,
+    RESET_SCORE,
     scoreUpdates,
     stopGame,
 } from "../store/actions";
+
+import Instruction from "./Instructions";
+
 
 export interface ICanvasBoard {
     height: number;
     width: number;
 }
+
 
 const CanvasBoard = ({ height, width }: ICanvasBoard) => {
     const dispatch = useDispatch();
@@ -122,11 +126,11 @@ const CanvasBoard = ({ height, width }: ICanvasBoard) => {
             snake1[0].x <= 0 ||
             snake1[0].y <= 0 ||
             snake1[0].y >= height
-          ) {
+        ) {
             setGameEnded(true);
             dispatch(stopGame());
             window.removeEventListener("keypress", handleKeyEvents);
-          } else setGameEnded(false);
+        } else setGameEnded(false);
 
     }, [context, pos, snake1]);
 
@@ -141,27 +145,44 @@ const CanvasBoard = ({ height, width }: ICanvasBoard) => {
     useEffect(() => {
         //Generate new object
         if (isConsumed) {
-          const posi = generateRandomPosition(width - 20, height - 20);
-          setPos(posi);
-          setIsConsumed(false);
-    
-          //Increase snake size when object is consumed successfully
-          dispatch(increaseSnake());
+            const posi = generateRandomPosition(width - 20, height - 20);
+            setPos(posi);
+            setIsConsumed(false);
 
-          //Increment the score
-          dispatch(scoreUpdates(INCREMENT_SCORE));
+            //Increase snake size when object is consumed successfully
+            dispatch(increaseSnake());
+
+            //Increment the score
+            dispatch(scoreUpdates(INCREMENT_SCORE));
         }
-      }, [isConsumed, pos, height, width, dispatch]);
+    }, [isConsumed, pos, height, width, dispatch]);
+
+    const resetBoard = useCallback(() => {
+        window.removeEventListener("keypress", handleKeyEvents);
+        dispatch(resetGame());
+        dispatch(scoreUpdates(RESET_SCORE));
+        clearBoard(context);
+        drawObject(context, snake1, "#91C483");
+        drawObject(
+            context,
+            [generateRandomPosition(width - 20, height - 20)],
+            "#676FA3"
+        ); //Draws object randomly
+        window.addEventListener("keypress", handleKeyEvents);
+    }, [context, dispatch, handleKeyEvents, height, snake1, width]);
 
     return (
-        <canvas
-            ref={canvasRef}
-            style={{
-                border: "3px solid black",
-            }}
-            height={height}
-            width={width}
-        />
+        <>
+            <canvas
+                ref={canvasRef}
+                style={{
+                    border: `3px solid ${gameEnded ? "red" : "black"}`,
+                }}
+                width={width}
+                height={height}
+            />
+            <Instruction resetBoard={resetBoard} />
+        </>
     );
 };
 
