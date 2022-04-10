@@ -40,7 +40,6 @@ export interface ICanvasBoard {
     width: number;
 }
 
-
 const CanvasBoard = ({ height, width }: ICanvasBoard) => {
     const dispatch = useDispatch();
     const canvasRef = useRef<HTMLCanvasElement | null>(null);

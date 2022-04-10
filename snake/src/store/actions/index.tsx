@@ -50,5 +50,5 @@ export const stopGame = () => ({
 
 //Action creator:
 export const resetGame = () => ({
-  type: RESET
+    type: RESET
 });
