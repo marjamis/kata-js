@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Light Show</title>
+    <script type="text/javascript" src="./light-show.js" defer></script>
+    <link rel="stylesheet" type="text/css" href="style.css" media="screen" />
+</head>
+<html>
+
+<body class="light-mode center">
+    <button id="colour-mode" value="light" class="right">Light Mode</button>
+
+    <h1>Light Show</h1>
+
+    <br />
+
+    <div id="light-globe" class="center blink"></div>
+
+    <br />
+
+    <h2>Select the colour of the light</h2>
+    <form>
+        <label for="light-colour-controls">
+            <table>
+                <tr>
+                    <td>Red:</td>
+                    <td><input type="range" id="red-colour" min="0" max="255" value="0" /></td>
+                    <td id="red-colour-value"></td>
+                </tr>
+                <tr>
+                    <td>Green:</td>
+                    <td><input type="range" id="green-colour" min="0" max="255" value="0" /></td>
+                    <td id="green-colour-value"></td>
+                <tr>
+                    <td>Blue:</td>
+                    <td><input type="range" id="blue-colour" min="0" max="255" value="0" /></td>
+                    <td id="blue-colour-value"></td>
+                </tr>
+            </table>
+        </label>
+    </form>
+
+    <h2>Select strobing effect options</h2>
+    <form>
+        <label for="light-strobing-controls">
+            <table>
+                <tr>
+                    <td>Strobing?</td>
+                    <td><input type="checkbox" id="strobing-toggle" /></td>
+                    <td id="strobing-toggle-value"></td>
+                </tr>
+            </table>
+        </label>
+    </form>
+
+</body>
+
+</html>

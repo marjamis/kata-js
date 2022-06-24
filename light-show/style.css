@@ -1,0 +1,48 @@
+.light-mode {
+    background-color: var(--background-color, rgb(250, 200, 160));
+    color: var(--text-color, rgb(69, 67, 67));
+    --light-globe-border-color: rgb(69, 67, 67);
+}
+
+.dark-mode {
+    background-color: var(--background-color, rgb(69, 67, 67));
+    color: var(--text-color, rgb(250, 200, 160));
+    --light-globe-border-color: rgb(250, 200, 160);
+}
+
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+.right {
+    position: absolute;
+    right: 10%;
+}
+
+#light-globe {
+    background-color: var(--light-globe-color, rgb(0, 0, 0));
+    border-color: var(--light-globe-border-color, rgb(255, 255, 255));
+    border: 10px solid;
+    border-radius: 50%;
+    width: 20rem;
+    aspect-ratio: 1/1;
+}
+
+.blink {
+    animation: blinker var(--strobing-speed-value, 0s) infinite;
+}
+
+@keyframes blinker {
+    from {
+        opacity: 1.0;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    to {
+        opacity: 1.0;
+    }
+}
